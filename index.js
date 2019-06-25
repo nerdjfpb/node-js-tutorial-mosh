@@ -10,6 +10,10 @@ app.get('/api/courses', (req, res) =>{
 	res.send([1, 2, 3, 4, 5]);
 });
 
+app.get('/api/courses/:id', (req,res) => {
+	res.send(req.params);
+});
+
 
 //Port
 const port = process.env.PORT || 3000; 
