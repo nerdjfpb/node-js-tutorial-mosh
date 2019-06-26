@@ -7,6 +7,11 @@ const helmet = require('helmet');
 const starterDebugger = require('debug')('app:startup');
 const dbDebugger = require('debug')('app:db');
 
+//doesn't require to call the pug/jade, just adding this line works
+app.set('view engine', 'pug');
+// this will initate where I'll hold the files- optional setting
+app.set('views', './views');
+
 //debuging
 //need to change the enviroment variable to set DEBUG=app:startup;
 // set DEBUG=app:* ; it will set all the variables
@@ -34,8 +39,13 @@ const courses = [
 
 
 app.get('/', (req, res) =>{
-	res.send('Hello World New Game');
+	res.render('index', { 
+		title: 'My Express App', 
+		heading1: 'Hello', 
+		passage1: 'Testing the passsge, no idea how it will go' 
+	});
 });
+
 
 app.get('/api/courses', (req, res) =>{
 	res.send(courses);
