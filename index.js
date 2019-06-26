@@ -4,7 +4,13 @@ const express = require('express');
 const app = express();
 const logger = require('./logger');
 const helmet = require('helmet');
+const starterDebugger = require('debug')('app:startup');
+const dbDebugger = require('debug')('app:db');
 
+//debuging
+//need to change the enviroment variable to set DEBUG=app:startup;
+// set DEBUG=app:* ; it will set all the variables
+starterDebugger('application Name: ' + config.get('name'));
 //configuration
 console.log('application Name: ' + config.get('name'));
 console.log('Mail Server: ' + config.get('mail.host'));
