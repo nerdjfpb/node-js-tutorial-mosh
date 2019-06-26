@@ -1,15 +1,24 @@
+const config = require('config');
 const Joi = require('joi');
 const express = require('express');
 const app = express();
-const logger = require('./logger')
-const helmet = require('helmet')
+const logger = require('./logger');
+const helmet = require('helmet');
+
+//configuration
+console.log('application Name: ' + config.get('name'));
+console.log('Mail Server: ' + config.get('mail.host'));
+// console.log('Mail Password: ' + config.get('mail.password'));
+
+console.log(`NODE_ENV: ${process.env.NODE_ENV}`); //undefined
+console.log(`app: ${app.get('env')}`);
 
 app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-app.use(logger);
+app.use(logger); 
 
 const courses = [
 	{id: 1, name: 'course1'},
